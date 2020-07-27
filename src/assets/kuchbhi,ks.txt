@@ -1,0 +1,59 @@
+import React from "react";
+import style from "./show.module.css";
+
+const Show = ({ name, network, image, start_date }) => {
+  return (
+    <div className={style.show}>
+      <h1>{name}</h1>
+      <p>{network}</p>
+      <img className={style.image} src={image} />
+      <p>{start_date}</p>
+    </div>
+  );
+};
+export default Show;
+
+*****************************************************************************************************************************************************
+
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Show from "./Show";
+
+function App() {
+  const [shows, setShows] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // const query='https://www.episodate.com/api/most-popular?page=1';
+
+  const getShows = async () => {
+    const response = await fetch(
+      "https://www.episodate.com/api/most-popular?page=1"
+    );
+    const data = await response.json();
+    setShows(data.tv_shows);
+    console.log(data.tv_shows);
+  };
+
+  useEffect(() => {
+    getShows();
+  }, []);
+
+  return (
+    <div className="App">
+      <h1> binge!</h1>
+      <div className="shows">
+        {shows.map((show) => (
+          <Show
+            key={show.id}
+            name={show.name}
+            network={show.network}
+            image={show.image_thumbnail_path}
+            start_date={show.start_date}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;

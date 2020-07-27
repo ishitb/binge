@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+.card {
+    display: flex;
+    border-radius: 7px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 25rem;
+    width: 15rem;
+    box-shadow: 0px 5px 20px rgb(71, 71, 71);
+    margin: 20px;
+    padding: 0 0 1rem 1.2rem;
+    transition: all 0.4s;
+}
+
+.card h1, .card p {
+    color: white;
+    opacity: 0;
+    transition: all 0.6s;
+    text-shadow: 1px 1px grey;    
+}
+
+.card:hover {
+    /* filter: blur(5px); */
+    /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.card:hover h1, .card:hover p {
+    opacity: 1;
+}
